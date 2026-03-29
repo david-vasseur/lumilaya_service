@@ -36,7 +36,6 @@ COPY --from=builder /usr/src/app/dbNest.prisma.config.ts ./
 COPY --from=builder /usr/src/app/dbLumilaya.prisma.config.ts ./
 
 # Copier les clients générés
-COPY --from=builder /usr/src/app/node_modules/.prisma ./node_modules/.prisma
 COPY --from=builder /usr/src/app/prisma/generated ./prisma/generated
 
 CMD ["sh", "-c", "npx prisma migrate deploy --config='./dbNest.prisma.config.ts' && node dist/src/main.js"]
