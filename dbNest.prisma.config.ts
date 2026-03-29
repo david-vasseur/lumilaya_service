@@ -9,6 +9,6 @@ export default defineConfig({
       	path: "prisma/dbNest/migrations",
     },
     datasource: {
-      	url: process.env["DATABASE_URL_NEST"],
+      	url: process.env.DATABASE_URL_DBNEST,
     },
 });
