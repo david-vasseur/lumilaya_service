@@ -9,6 +9,6 @@ export default defineConfig({
 		path: "prisma/dbLumilaya/migrations",
 	},
 	datasource: {
-		url: process.env["DATABASE_URL_LUMILAYA"],
+		url: process.env.DATABASE_URL_DBLUMILAYA,
 	},
 });

@@ -6,7 +6,7 @@ import { PrismaClient } from 'prisma/generated/dbLumilaya/prisma/client';
 export class PrismaDbLumilayaService extends PrismaClient implements OnModuleInit, OnModuleDestroy {
     constructor() {
         const adapter = new PrismaPg({
-        connectionString: process.env.DATABASE_URL_LUMILAYA as string,
+        connectionString: process.env.DATABASE_URL_DBLUMILAYA as string,
         });
         super({ adapter });
     }

@@ -41,4 +41,15 @@ export class AuthRepositoryService {
         })
     }
 
+    async getFingerprintByUser(username: string) {
+        return this.prisma.user.findFirst({
+            where: {
+                username
+            },
+            select: {
+                fingerprint: true
+            }
+        })
+    }
+
 }

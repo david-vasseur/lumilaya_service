@@ -6,6 +6,7 @@ import { AuthRepositoryService } from './auth-repository/auth-repository.service
 import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from './jwt.strategy';
 import { PrismaDbNestService } from 'src/prisma/prisma-db-nest.service';
+import { FingerprintGuard } from './fingerprint-auth.guard';
 
 @Module({
 
@@ -17,9 +18,8 @@ import { PrismaDbNestService } from 'src/prisma/prisma-db-nest.service';
 		}),
 		
 	],
-
 	controllers: [AuthController],
-	providers: [AuthService, AuthRepositoryService, JwtStrategy, PrismaDbNestService],
-	exports: [AuthRepositoryService]
+	providers: [AuthService, AuthRepositoryService, JwtStrategy, PrismaDbNestService, FingerprintGuard],
+	exports: [AuthRepositoryService, FingerprintGuard]
 })
 export class AuthModule {}
