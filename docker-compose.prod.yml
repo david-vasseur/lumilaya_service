@@ -1,0 +1,18 @@
+services:
+  app:
+    build: 
+      context: .
+      dockerfile: Dockerfile.prod
+    container_name: lumilaya_service
+    restart: unless-stopped
+    env_file:
+      - .env
+    networks:
+      - lumilaya-network
+      - postgres-network
+
+networks:
+  lumilaya-network:
+    external: true
+  postgres-network:
+    external: true
