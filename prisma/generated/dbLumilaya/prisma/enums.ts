@@ -16,3 +16,15 @@ export const ShippingType = {
 } as const
 
 export type ShippingType = (typeof ShippingType)[keyof typeof ShippingType]
+
+
+export const ShippingStatus = {
+  PENDING: 'PENDING',
+  PROCESSING: 'PROCESSING',
+  SHIPPED: 'SHIPPED',
+  DELIVERING: 'DELIVERING',
+  DELIVERED: 'DELIVERED',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type ShippingStatus = (typeof ShippingStatus)[keyof typeof ShippingStatus]

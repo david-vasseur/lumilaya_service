@@ -19,6 +19,15 @@ enum ShippingType {
   OFF
 }
 
+enum ShippingStatus {
+  PENDING
+  PROCESSING
+  SHIPPED
+  DELIVERING
+  DELIVERED
+  CANCELLED
+}
+
 model Order {
   id                 Int      @id @default(autoincrement())
   stripeSessionId    String   @unique
@@ -36,6 +45,7 @@ model Order {
   shippingCountry    String   @db.Char(2)
   shippingType       ShippingType
   shippingPrice      Decimal  @db.Decimal(10, 2)
+  shippingStatus     ShippingStatus @default(PENDING)
 
   // 🧾 Facturation
   billingAddress     String

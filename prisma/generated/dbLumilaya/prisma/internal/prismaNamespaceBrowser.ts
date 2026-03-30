@@ -90,6 +90,7 @@ export const OrderScalarFieldEnum = {
   shippingCountry: 'shippingCountry',
   shippingType: 'shippingType',
   shippingPrice: 'shippingPrice',
+  shippingStatus: 'shippingStatus',
   billingAddress: 'billingAddress',
   billingCity: 'billingCity',
   billingPostalCode: 'billingPostalCode',

@@ -58,6 +58,13 @@ export type DecimalFilter<$PrismaModel = never> = {
   not?: Prisma.NestedDecimalFilter<$PrismaModel> | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
+export type EnumShippingStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.ShippingStatus | Prisma.EnumShippingStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.ShippingStatus[] | Prisma.ListEnumShippingStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ShippingStatus[] | Prisma.ListEnumShippingStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumShippingStatusFilter<$PrismaModel> | $Enums.ShippingStatus
+}
+
 export type BoolFilter<$PrismaModel = never> = {
   equals?: boolean | Prisma.BooleanFieldRefInput<$PrismaModel>
   not?: Prisma.NestedBoolFilter<$PrismaModel> | boolean
@@ -132,6 +139,16 @@ export type DecimalWithAggregatesFilter<$PrismaModel = never> = {
   _sum?: Prisma.NestedDecimalFilter<$PrismaModel>
   _min?: Prisma.NestedDecimalFilter<$PrismaModel>
   _max?: Prisma.NestedDecimalFilter<$PrismaModel>
+}
+
+export type EnumShippingStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.ShippingStatus | Prisma.EnumShippingStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.ShippingStatus[] | Prisma.ListEnumShippingStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ShippingStatus[] | Prisma.ListEnumShippingStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumShippingStatusWithAggregatesFilter<$PrismaModel> | $Enums.ShippingStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumShippingStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumShippingStatusFilter<$PrismaModel>
 }
 
 export type BoolWithAggregatesFilter<$PrismaModel = never> = {
@@ -360,6 +377,13 @@ export type NestedDecimalFilter<$PrismaModel = never> = {
   not?: Prisma.NestedDecimalFilter<$PrismaModel> | runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
+export type NestedEnumShippingStatusFilter<$PrismaModel = never> = {
+  equals?: $Enums.ShippingStatus | Prisma.EnumShippingStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.ShippingStatus[] | Prisma.ListEnumShippingStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ShippingStatus[] | Prisma.ListEnumShippingStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumShippingStatusFilter<$PrismaModel> | $Enums.ShippingStatus
+}
+
 export type NestedBoolFilter<$PrismaModel = never> = {
   equals?: boolean | Prisma.BooleanFieldRefInput<$PrismaModel>
   not?: Prisma.NestedBoolFilter<$PrismaModel> | boolean
@@ -444,6 +468,16 @@ export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
   _sum?: Prisma.NestedDecimalFilter<$PrismaModel>
   _min?: Prisma.NestedDecimalFilter<$PrismaModel>
   _max?: Prisma.NestedDecimalFilter<$PrismaModel>
+}
+
+export type NestedEnumShippingStatusWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.ShippingStatus | Prisma.EnumShippingStatusFieldRefInput<$PrismaModel>
+  in?: $Enums.ShippingStatus[] | Prisma.ListEnumShippingStatusFieldRefInput<$PrismaModel>
+  notIn?: $Enums.ShippingStatus[] | Prisma.ListEnumShippingStatusFieldRefInput<$PrismaModel>
+  not?: Prisma.NestedEnumShippingStatusWithAggregatesFilter<$PrismaModel> | $Enums.ShippingStatus
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumShippingStatusFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumShippingStatusFilter<$PrismaModel>
 }
 
 export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {

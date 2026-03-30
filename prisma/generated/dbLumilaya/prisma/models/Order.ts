@@ -51,6 +51,7 @@ export type OrderMinAggregateOutputType = {
   shippingCountry: string | null
   shippingType: $Enums.ShippingType | null
   shippingPrice: runtime.Decimal | null
+  shippingStatus: $Enums.ShippingStatus | null
   billingAddress: string | null
   billingCity: string | null
   billingPostalCode: string | null
@@ -73,6 +74,7 @@ export type OrderMaxAggregateOutputType = {
   shippingCountry: string | null
   shippingType: $Enums.ShippingType | null
   shippingPrice: runtime.Decimal | null
+  shippingStatus: $Enums.ShippingStatus | null
   billingAddress: string | null
   billingCity: string | null
   billingPostalCode: string | null
@@ -95,6 +97,7 @@ export type OrderCountAggregateOutputType = {
   shippingCountry: number
   shippingType: number
   shippingPrice: number
+  shippingStatus: number
   billingAddress: number
   billingCity: number
   billingPostalCode: number
@@ -131,6 +134,7 @@ export type OrderMinAggregateInputType = {
   shippingCountry?: true
   shippingType?: true
   shippingPrice?: true
+  shippingStatus?: true
   billingAddress?: true
   billingCity?: true
   billingPostalCode?: true
@@ -153,6 +157,7 @@ export type OrderMaxAggregateInputType = {
   shippingCountry?: true
   shippingType?: true
   shippingPrice?: true
+  shippingStatus?: true
   billingAddress?: true
   billingCity?: true
   billingPostalCode?: true
@@ -175,6 +180,7 @@ export type OrderCountAggregateInputType = {
   shippingCountry?: true
   shippingType?: true
   shippingPrice?: true
+  shippingStatus?: true
   billingAddress?: true
   billingCity?: true
   billingPostalCode?: true
@@ -284,6 +290,7 @@ export type OrderGroupByOutputType = {
   shippingCountry: string
   shippingType: $Enums.ShippingType
   shippingPrice: runtime.Decimal
+  shippingStatus: $Enums.ShippingStatus
   billingAddress: string
   billingCity: string
   billingPostalCode: string
@@ -329,6 +336,7 @@ export type OrderWhereInput = {
   shippingCountry?: Prisma.StringFilter<"Order"> | string
   shippingType?: Prisma.EnumShippingTypeFilter<"Order"> | $Enums.ShippingType
   shippingPrice?: Prisma.DecimalFilter<"Order"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  shippingStatus?: Prisma.EnumShippingStatusFilter<"Order"> | $Enums.ShippingStatus
   billingAddress?: Prisma.StringFilter<"Order"> | string
   billingCity?: Prisma.StringFilter<"Order"> | string
   billingPostalCode?: Prisma.StringFilter<"Order"> | string
@@ -352,6 +360,7 @@ export type OrderOrderByWithRelationInput = {
   shippingCountry?: Prisma.SortOrder
   shippingType?: Prisma.SortOrder
   shippingPrice?: Prisma.SortOrder
+  shippingStatus?: Prisma.SortOrder
   billingAddress?: Prisma.SortOrder
   billingCity?: Prisma.SortOrder
   billingPostalCode?: Prisma.SortOrder
@@ -378,6 +387,7 @@ export type OrderWhereUniqueInput = Prisma.AtLeast<{
   shippingCountry?: Prisma.StringFilter<"Order"> | string
   shippingType?: Prisma.EnumShippingTypeFilter<"Order"> | $Enums.ShippingType
   shippingPrice?: Prisma.DecimalFilter<"Order"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  shippingStatus?: Prisma.EnumShippingStatusFilter<"Order"> | $Enums.ShippingStatus
   billingAddress?: Prisma.StringFilter<"Order"> | string
   billingCity?: Prisma.StringFilter<"Order"> | string
   billingPostalCode?: Prisma.StringFilter<"Order"> | string
@@ -401,6 +411,7 @@ export type OrderOrderByWithAggregationInput = {
   shippingCountry?: Prisma.SortOrder
   shippingType?: Prisma.SortOrder
   shippingPrice?: Prisma.SortOrder
+  shippingStatus?: Prisma.SortOrder
   billingAddress?: Prisma.SortOrder
   billingCity?: Prisma.SortOrder
   billingPostalCode?: Prisma.SortOrder
@@ -431,6 +442,7 @@ export type OrderScalarWhereWithAggregatesInput = {
   shippingCountry?: Prisma.StringWithAggregatesFilter<"Order"> | string
   shippingType?: Prisma.EnumShippingTypeWithAggregatesFilter<"Order"> | $Enums.ShippingType
   shippingPrice?: Prisma.DecimalWithAggregatesFilter<"Order"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  shippingStatus?: Prisma.EnumShippingStatusWithAggregatesFilter<"Order"> | $Enums.ShippingStatus
   billingAddress?: Prisma.StringWithAggregatesFilter<"Order"> | string
   billingCity?: Prisma.StringWithAggregatesFilter<"Order"> | string
   billingPostalCode?: Prisma.StringWithAggregatesFilter<"Order"> | string
@@ -452,6 +464,7 @@ export type OrderCreateInput = {
   shippingCountry: string
   shippingType: $Enums.ShippingType
   shippingPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  shippingStatus?: $Enums.ShippingStatus
   billingAddress: string
   billingCity: string
   billingPostalCode: string
@@ -475,6 +488,7 @@ export type OrderUncheckedCreateInput = {
   shippingCountry: string
   shippingType: $Enums.ShippingType
   shippingPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  shippingStatus?: $Enums.ShippingStatus
   billingAddress: string
   billingCity: string
   billingPostalCode: string
@@ -497,6 +511,7 @@ export type OrderUpdateInput = {
   shippingCountry?: Prisma.StringFieldUpdateOperationsInput | string
   shippingType?: Prisma.EnumShippingTypeFieldUpdateOperationsInput | $Enums.ShippingType
   shippingPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  shippingStatus?: Prisma.EnumShippingStatusFieldUpdateOperationsInput | $Enums.ShippingStatus
   billingAddress?: Prisma.StringFieldUpdateOperationsInput | string
   billingCity?: Prisma.StringFieldUpdateOperationsInput | string
   billingPostalCode?: Prisma.StringFieldUpdateOperationsInput | string
@@ -520,6 +535,7 @@ export type OrderUncheckedUpdateInput = {
   shippingCountry?: Prisma.StringFieldUpdateOperationsInput | string
   shippingType?: Prisma.EnumShippingTypeFieldUpdateOperationsInput | $Enums.ShippingType
   shippingPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  shippingStatus?: Prisma.EnumShippingStatusFieldUpdateOperationsInput | $Enums.ShippingStatus
   billingAddress?: Prisma.StringFieldUpdateOperationsInput | string
   billingCity?: Prisma.StringFieldUpdateOperationsInput | string
   billingPostalCode?: Prisma.StringFieldUpdateOperationsInput | string
@@ -543,6 +559,7 @@ export type OrderCreateManyInput = {
   shippingCountry: string
   shippingType: $Enums.ShippingType
   shippingPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  shippingStatus?: $Enums.ShippingStatus
   billingAddress: string
   billingCity: string
   billingPostalCode: string
@@ -564,6 +581,7 @@ export type OrderUpdateManyMutationInput = {
   shippingCountry?: Prisma.StringFieldUpdateOperationsInput | string
   shippingType?: Prisma.EnumShippingTypeFieldUpdateOperationsInput | $Enums.ShippingType
   shippingPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  shippingStatus?: Prisma.EnumShippingStatusFieldUpdateOperationsInput | $Enums.ShippingStatus
   billingAddress?: Prisma.StringFieldUpdateOperationsInput | string
   billingCity?: Prisma.StringFieldUpdateOperationsInput | string
   billingPostalCode?: Prisma.StringFieldUpdateOperationsInput | string
@@ -586,6 +604,7 @@ export type OrderUncheckedUpdateManyInput = {
   shippingCountry?: Prisma.StringFieldUpdateOperationsInput | string
   shippingType?: Prisma.EnumShippingTypeFieldUpdateOperationsInput | $Enums.ShippingType
   shippingPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  shippingStatus?: Prisma.EnumShippingStatusFieldUpdateOperationsInput | $Enums.ShippingStatus
   billingAddress?: Prisma.StringFieldUpdateOperationsInput | string
   billingCity?: Prisma.StringFieldUpdateOperationsInput | string
   billingPostalCode?: Prisma.StringFieldUpdateOperationsInput | string
@@ -608,6 +627,7 @@ export type OrderCountOrderByAggregateInput = {
   shippingCountry?: Prisma.SortOrder
   shippingType?: Prisma.SortOrder
   shippingPrice?: Prisma.SortOrder
+  shippingStatus?: Prisma.SortOrder
   billingAddress?: Prisma.SortOrder
   billingCity?: Prisma.SortOrder
   billingPostalCode?: Prisma.SortOrder
@@ -636,6 +656,7 @@ export type OrderMaxOrderByAggregateInput = {
   shippingCountry?: Prisma.SortOrder
   shippingType?: Prisma.SortOrder
   shippingPrice?: Prisma.SortOrder
+  shippingStatus?: Prisma.SortOrder
   billingAddress?: Prisma.SortOrder
   billingCity?: Prisma.SortOrder
   billingPostalCode?: Prisma.SortOrder
@@ -658,6 +679,7 @@ export type OrderMinOrderByAggregateInput = {
   shippingCountry?: Prisma.SortOrder
   shippingType?: Prisma.SortOrder
   shippingPrice?: Prisma.SortOrder
+  shippingStatus?: Prisma.SortOrder
   billingAddress?: Prisma.SortOrder
   billingCity?: Prisma.SortOrder
   billingPostalCode?: Prisma.SortOrder
@@ -692,6 +714,10 @@ export type DecimalFieldUpdateOperationsInput = {
   decrement?: runtime.Decimal | runtime.DecimalJsLike | number | string
   multiply?: runtime.Decimal | runtime.DecimalJsLike | number | string
   divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
+}
+
+export type EnumShippingStatusFieldUpdateOperationsInput = {
+  set?: $Enums.ShippingStatus
 }
 
 export type BoolFieldUpdateOperationsInput = {
@@ -736,6 +762,7 @@ export type OrderCreateWithoutItemsInput = {
   shippingCountry: string
   shippingType: $Enums.ShippingType
   shippingPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  shippingStatus?: $Enums.ShippingStatus
   billingAddress: string
   billingCity: string
   billingPostalCode: string
@@ -758,6 +785,7 @@ export type OrderUncheckedCreateWithoutItemsInput = {
   shippingCountry: string
   shippingType: $Enums.ShippingType
   shippingPrice: runtime.Decimal | runtime.DecimalJsLike | number | string
+  shippingStatus?: $Enums.ShippingStatus
   billingAddress: string
   billingCity: string
   billingPostalCode: string
@@ -795,6 +823,7 @@ export type OrderUpdateWithoutItemsInput = {
   shippingCountry?: Prisma.StringFieldUpdateOperationsInput | string
   shippingType?: Prisma.EnumShippingTypeFieldUpdateOperationsInput | $Enums.ShippingType
   shippingPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  shippingStatus?: Prisma.EnumShippingStatusFieldUpdateOperationsInput | $Enums.ShippingStatus
   billingAddress?: Prisma.StringFieldUpdateOperationsInput | string
   billingCity?: Prisma.StringFieldUpdateOperationsInput | string
   billingPostalCode?: Prisma.StringFieldUpdateOperationsInput | string
@@ -817,6 +846,7 @@ export type OrderUncheckedUpdateWithoutItemsInput = {
   shippingCountry?: Prisma.StringFieldUpdateOperationsInput | string
   shippingType?: Prisma.EnumShippingTypeFieldUpdateOperationsInput | $Enums.ShippingType
   shippingPrice?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  shippingStatus?: Prisma.EnumShippingStatusFieldUpdateOperationsInput | $Enums.ShippingStatus
   billingAddress?: Prisma.StringFieldUpdateOperationsInput | string
   billingCity?: Prisma.StringFieldUpdateOperationsInput | string
   billingPostalCode?: Prisma.StringFieldUpdateOperationsInput | string
@@ -870,6 +900,7 @@ export type OrderSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   shippingCountry?: boolean
   shippingType?: boolean
   shippingPrice?: boolean
+  shippingStatus?: boolean
   billingAddress?: boolean
   billingCity?: boolean
   billingPostalCode?: boolean
@@ -894,6 +925,7 @@ export type OrderSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   shippingCountry?: boolean
   shippingType?: boolean
   shippingPrice?: boolean
+  shippingStatus?: boolean
   billingAddress?: boolean
   billingCity?: boolean
   billingPostalCode?: boolean
@@ -916,6 +948,7 @@ export type OrderSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   shippingCountry?: boolean
   shippingType?: boolean
   shippingPrice?: boolean
+  shippingStatus?: boolean
   billingAddress?: boolean
   billingCity?: boolean
   billingPostalCode?: boolean
@@ -938,6 +971,7 @@ export type OrderSelectScalar = {
   shippingCountry?: boolean
   shippingType?: boolean
   shippingPrice?: boolean
+  shippingStatus?: boolean
   billingAddress?: boolean
   billingCity?: boolean
   billingPostalCode?: boolean
@@ -947,7 +981,7 @@ export type OrderSelectScalar = {
   createdAt?: boolean
 }
 
-export type OrderOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "stripeSessionId" | "firstName" | "lastName" | "email" | "phone" | "shippingAddress" | "shippingCity" | "shippingPostalCode" | "shippingCountry" | "shippingType" | "shippingPrice" | "billingAddress" | "billingCity" | "billingPostalCode" | "billingCountry" | "acceptCGV" | "total" | "createdAt", ExtArgs["result"]["order"]>
+export type OrderOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "stripeSessionId" | "firstName" | "lastName" | "email" | "phone" | "shippingAddress" | "shippingCity" | "shippingPostalCode" | "shippingCountry" | "shippingType" | "shippingPrice" | "shippingStatus" | "billingAddress" | "billingCity" | "billingPostalCode" | "billingCountry" | "acceptCGV" | "total" | "createdAt", ExtArgs["result"]["order"]>
 export type OrderInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   items?: boolean | Prisma.Order$itemsArgs<ExtArgs>
   _count?: boolean | Prisma.OrderCountOutputTypeDefaultArgs<ExtArgs>
@@ -973,6 +1007,7 @@ export type $OrderPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     shippingCountry: string
     shippingType: $Enums.ShippingType
     shippingPrice: runtime.Decimal
+    shippingStatus: $Enums.ShippingStatus
     billingAddress: string
     billingCity: string
     billingPostalCode: string
@@ -1416,6 +1451,7 @@ export interface OrderFieldRefs {
   readonly shippingCountry: Prisma.FieldRef<"Order", 'String'>
   readonly shippingType: Prisma.FieldRef<"Order", 'ShippingType'>
   readonly shippingPrice: Prisma.FieldRef<"Order", 'Decimal'>
+  readonly shippingStatus: Prisma.FieldRef<"Order", 'ShippingStatus'>
   readonly billingAddress: Prisma.FieldRef<"Order", 'String'>
   readonly billingCity: Prisma.FieldRef<"Order", 'String'>
   readonly billingPostalCode: Prisma.FieldRef<"Order", 'String'>
