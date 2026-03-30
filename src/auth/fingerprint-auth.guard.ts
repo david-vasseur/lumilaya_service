@@ -12,21 +12,21 @@ export class FingerprintGuard implements CanActivate {
         // 1️⃣ JWT doit déjà avoir été validé
         const user = request.user; 
         if (!user) {
-        throw new UnauthorizedException('Utilisateur non authorisé');
+            throw new UnauthorizedException('Utilisateur non authorisé');
         }
 
         // 2️⃣ Récupérer le fingerprint envoyé par le client (ex: header)
-        const fingerprint = request.headers['x-fingerprint'];
-        if (!fingerprint) {
-        throw new UnauthorizedException('Utilisateur non authorisé');
+        const headerFingerprint = request.headers['x-fingerprint'];
+        if (!headerFingerprint) {
+            throw new UnauthorizedException('Utilisateur non authorisé');
         }
 
         // 3️⃣ Comparer avec le fingerprint stocké côté serveur
 
-        const userFingerprint = await this.authRepository.getFingerprintByUser(user);
+        const userFingerprint = await this.authRepository.getFingerprintByUser(user.username);
 
-        if (user.fingerprint !== userFingerprint) {
-        throw new UnauthorizedException('Utilisateur non authorisé');
+        if (headerFingerprint !== userFingerprint?.fingerprint) {
+            throw new UnauthorizedException('Utilisateur non authorisé');
         }
 
         return true;
