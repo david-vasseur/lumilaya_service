@@ -31,7 +31,23 @@ export class OrderController {
             @Param('id') id: string,
             @Body('shippingStatus') shippingStatus: ShippingStatus
         ) {
-            return this.orderService.updateShippingStatus(Number(id), shippingStatus);
+            const order = await this.orderService.updateShippingStatus(
+                Number(id),
+                shippingStatus
+            );
+
+            if (!order) {
+                return {
+                success: false,
+                message: "Commande introuvable"
+                };
+            }
+
+            return {
+                success: true,
+                message: "Statut de livraison mis à jour",
+                order
+            };
         }
 
     }
