@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { OrderRepositoryService } from './order-repository/order-repository.service';
 import { ShippingStatus } from 'prisma/generated/dbLumilaya/prisma/enums';
 import { Resend } from 'resend';
@@ -8,7 +8,7 @@ export class OrderService {
 
     constructor(
         private readonly orderRepository: OrderRepositoryService,
-        private resend = new Resend(process.env.RESEND_API_KEY)
+        @Inject('RESEND') private readonly resend: Resend
     ) {}
 
     async getAllOrders() {
