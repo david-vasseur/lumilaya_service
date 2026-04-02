@@ -30,7 +30,7 @@ export class OrderService {
             await this.resend.emails.send({
                 from: 'no-reply@lumilaya.fr',
                 to: updatedOrder.email,
-                subject: "Confirmation de l'envoi de votre commande",
+                subject: "Votre commande a bien été envoyé",
                 html: `
                 <h1>Merci pour votre commande ${order.firstName} !</h1>
                 <p>Votre commande <strong>#${order.stripeSessionId}</strong> a bien été envoyée ce jour.</p>

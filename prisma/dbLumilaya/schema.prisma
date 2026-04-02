@@ -176,3 +176,16 @@ model Review {
 
   @@index([productId])
 }
+
+model Event {
+  id          Int     @id @default(autoincrement())
+  name        String
+  address     String
+  city        String
+  postalCode  String  
+  dateStart   DateTime
+  dateEnd     DateTime
+  image       String
+  url         String  @default("#")
+  createdAt   DateTime @default(now())
+}

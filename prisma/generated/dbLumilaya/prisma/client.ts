@@ -79,3 +79,8 @@ export type ShippingPrice = Prisma.ShippingPriceModel
  * 
  */
 export type Review = Prisma.ReviewModel
+/**
+ * Model Event
+ * 
+ */
+export type Event = Prisma.EventModel

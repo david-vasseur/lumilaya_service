@@ -58,7 +58,8 @@ export const ModelName = {
   Variant: 'Variant',
   Tag: 'Tag',
   ShippingPrice: 'ShippingPrice',
-  Review: 'Review'
+  Review: 'Review',
+  Event: 'Event'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -187,6 +188,22 @@ export const ReviewScalarFieldEnum = {
 } as const
 
 export type ReviewScalarFieldEnum = (typeof ReviewScalarFieldEnum)[keyof typeof ReviewScalarFieldEnum]
+
+
+export const EventScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  address: 'address',
+  city: 'city',
+  postalCode: 'postalCode',
+  dateStart: 'dateStart',
+  dateEnd: 'dateEnd',
+  image: 'image',
+  url: 'url',
+  createdAt: 'createdAt'
+} as const
+
+export type EventScalarFieldEnum = (typeof EventScalarFieldEnum)[keyof typeof EventScalarFieldEnum]
 
 
 export const SortOrder = {
