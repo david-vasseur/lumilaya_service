@@ -9,7 +9,16 @@ export class EventRepositoryService {
 
     async createEvent(data: EventDto) {
         return await this.prisma.event.create({
-            data
+            data: {
+                name: data.name,
+                address: data.address,
+                city: data.city,
+                postalCode: data.postalCode,
+                dateStart: new Date(data.dateStart),
+                dateEnd: new Date(data.dateEnd),
+                url: data.url !== "" ? data.url : undefined,
+                image: data.image
+            }
         });
     };
 
