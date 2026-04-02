@@ -29,6 +29,9 @@ ENV NODE_ENV=production
 COPY package*.json ./
 RUN npm ci --omit=dev
 
+# copier la clé gcs
+COPY --from=builder /usr/src/app/src/gcs/gcs-key.json ./src/gcs/gcs-key.json
+
 # Copier le build
 COPY --from=builder /usr/src/app/dist ./dist
 
