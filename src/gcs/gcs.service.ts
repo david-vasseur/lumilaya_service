@@ -16,8 +16,6 @@ import { Storage, File } from '@google-cloud/storage';
 
             await file.save(buffer, { contentType, resumable: false });
 
-            await file.makePublic();
-
             // Renvoyer l’URL publique
             return `https://storage.googleapis.com/${bucketName}/${filename}`;
         }
