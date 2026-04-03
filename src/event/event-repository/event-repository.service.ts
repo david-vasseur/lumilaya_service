@@ -23,7 +23,14 @@ export class EventRepositoryService {
     };
 
     async getEvents() {
+        const today = new Date();
+
         return await this.prisma.event.findMany({
+            where: {
+                dateStart: {
+                    gte: today, 
+                },
+            },
             select: {
                 id: true,
                 name: true,
@@ -32,8 +39,12 @@ export class EventRepositoryService {
                 city: true,
                 postalCode: true,
                 image: true,
-                url: true
-            }
+                url: true,
+            },
+            orderBy: {
+                dateStart: 'asc', 
+            },
+            take: 3,
         });
-    };
+    }
 }
