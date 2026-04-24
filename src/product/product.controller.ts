@@ -1,0 +1,69 @@
+import {
+  Controller,
+  Get,
+  Param,
+  ParseIntPipe,
+  Patch,
+  Body,
+  Post
+} from '@nestjs/common';
+import { ProductService } from './product.service';
+import { FingerprintGuard } from 'src/auth/fingerprint-auth.guard';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { UseGuards } from '@nestjs/common';
+
+    @UseGuards(JwtAuthGuard, FingerprintGuard)
+    @Controller('product')
+    export class ProductController {
+        constructor(private readonly productService: ProductService) {}
+
+        // 📦 GET /product/all
+        @Get('all')
+            async getAllProducts() {
+                return this.productService.getProducts();
+        }
+
+        // 🔍 GET /product/:id
+        @Get(':id')
+            async getProductById(
+                @Param('id', ParseIntPipe) id: number
+            ) {
+                return this.productService.getProductById(id);
+        }
+
+        // ✏️ PATCH /product/:id
+        @Patch(':id')
+            async updateProduct(
+                @Param('id', ParseIntPipe) id: number,
+                @Body() data: any
+            ) {
+                return this.productService.updateProduct(id, data);
+        }
+
+        // ➕ POST /product/:id/variant
+        @Post(':id/variant')
+            async addVariant(
+                @Param('id', ParseIntPipe) id: number,
+                @Body() data: any
+            ) {
+                return this.productService.addVariant(id, data);
+        }
+
+        // ✏️ PATCH /product/variant/:variantId
+        @Patch('variant/:variantId')
+            async updateVariant(
+                @Param('variantId', ParseIntPipe) variantId: number,
+                @Body() data: any
+            ) {
+                return this.productService.updateVariant(variantId, data);
+        }
+
+        // 🏷️ POST /product/:id/tags
+        @Post(':id/tags')
+            async addTags(
+                @Param('id', ParseIntPipe) id: number,
+                @Body('tags') tags: string[]
+            ) {
+                return this.productService.addTags(id, tags);
+            }
+    }
