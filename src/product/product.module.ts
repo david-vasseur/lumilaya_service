@@ -4,10 +4,11 @@ import { ProductService } from './product.service';
 import { AuthModule } from 'src/auth/auth.module';
 import { PrismaDbLumilayaService } from 'src/prisma/prisma-db-lumilaya.service';
 import { ProductRepositoryService } from './product-repository/product-repository.service';
+import { GcsModule } from 'src/gcs/gcs.module';
 
 @Module({
   controllers: [ProductController],
   providers: [ProductService, PrismaDbLumilayaService, ProductRepositoryService],
-  imports: [AuthModule]
+  imports: [AuthModule, GcsModule]
 })
 export class ProductModule {}

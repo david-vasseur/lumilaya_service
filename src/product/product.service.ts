@@ -1,61 +1,89 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { ProductRepositoryService } from './product-repository/product-repository.service';
+import { ProductDto } from './dto/product.dto';
+import { GcsService } from 'src/gcs/gcs.service';
 
 @Injectable()
 export class ProductService {
-  constructor(
-    private readonly productRepository: ProductRepositoryService
-  ) {}
+	constructor(
+		private readonly productRepository: ProductRepositoryService,
+		private readonly gcsService: GcsService,
+	) {}
 
-  // 📦 Listing (léger)
-  async getProducts() {
-    return this.productRepository.getProducts();
-  }
+	// Creation de produit
+	async createProduct(
+        data: ProductDto,
+        files: Express.Multer.File[]
+    ) {
 
-  // 🔍 Détail produit
-  async getProductById(id: number) {
-    const product = await this.productRepository.getProductById(id);
+        if (!files || files.length === 0) {
+            throw new BadRequestException(
+                "Au moins une image est requise"
+            );
+        }
 
-    if (!product) {
-      throw new NotFoundException(`Product with id ${id} not found`);
+
+        const images = await this.gcsService.uploadMany(
+            "ton-bucket-name",
+            files
+        );
+
+
+        return this.productRepository.createProduct({
+            ...data,
+            images
+        });
     }
 
-    return product;
-  }
+	// 📦 Listing (léger)
+	async getProducts() {
+		return this.productRepository.getProducts();
+	}
 
-  // ✏️ Update produit
-  async updateProduct(id: number, data: any) {
-    // tu peux ajouter validation métier ici
-    await this.ensureProductExists(id);
+	// 🔍 Détail produit
+	async getProductById(id: number) {
+		const product = await this.productRepository.getProductById(id);
 
-    return this.productRepository.updateProduct(id, data);
-  }
+		if (!product) {
+		throw new NotFoundException(`Product with id ${id} not found`);
+		}
 
-  // ➕ Ajouter variant
-  async addVariant(productId: number, data: any) {
-    await this.ensureProductExists(productId);
+		return product;
+	}
 
-    return this.productRepository.addVariant(productId, data);
-  }
+	// ✏️ Update produit
+	async updateProduct(id: number, data: any) {
+		// tu peux ajouter validation métier ici
+		await this.ensureProductExists(id);
 
-  // ✏️ Modifier variant
-  async updateVariant(variantId: number, data: any) {
-    return this.productRepository.updateVariant(variantId, data);
-  }
+		return this.productRepository.updateProduct(id, data);
+	}
 
-  // 🏷️ Ajouter tags
-  async addTags(productId: number, tags: string[]) {
-    await this.ensureProductExists(productId);
+	// ➕ Ajouter variant
+	async addVariant(productId: number, data: any) {
+		await this.ensureProductExists(productId);
 
-    return this.productRepository.addTags(productId, tags);
-  }
+		return this.productRepository.addVariant(productId, data);
+	}
 
-  // 🧠 Helper interne
-  private async ensureProductExists(id: number) {
-    const product = await this.productRepository.getProductById(id);
+	// ✏️ Modifier variant
+	async updateVariant(variantId: number, data: any) {
+		return this.productRepository.updateVariant(variantId, data);
+	}
 
-    if (!product) {
-      throw new NotFoundException(`Product with id ${id} not found`);
-    }
-  }
+	// 🏷️ Ajouter tags
+	async addTags(productId: number, tags: string[]) {
+		await this.ensureProductExists(productId);
+
+		return this.productRepository.addTags(productId, tags);
+	}
+
+	// 🧠 Helper interne
+	private async ensureProductExists(id: number) {
+		const product = await this.productRepository.getProductById(id);
+
+		if (!product) {
+		throw new NotFoundException(`Product with id ${id} not found`);
+		}
+	}
 }

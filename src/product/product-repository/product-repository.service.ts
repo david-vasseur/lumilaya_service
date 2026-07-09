@@ -133,4 +133,73 @@ export class ProductRepositoryService {
             }
         })
     }
+
+    async createProduct(data: {
+        description: string[]
+        images: string[]
+        wellness?: any
+
+        meta: {
+            collection: string
+            name: string
+            slug: string
+            intro: string
+            theme: any
+            stock: boolean
+            promo?: number
+            like?: number
+        }
+
+        variants?: {
+            name: string
+            duration: number
+            weight: number
+            price: number
+        }[]
+
+        tags?: string[]
+    }) {
+        return this.prisma.product.create({
+            data: {
+                description: data.description,
+                images: data.images,
+                wellness: data.wellness,
+
+                meta: {
+                    create: {
+                        collection: data.meta.collection,
+                        name: data.meta.name,
+                        slug: data.meta.slug,
+                        intro: data.meta.intro,
+                        theme: data.meta.theme,
+                        stock: data.meta.stock,
+                        promo: data.meta.promo,
+                        like: data.meta.like
+                    }
+                },
+
+                variants: data.variants
+                    ? {
+                        create: data.variants
+                    }
+                    : undefined,
+
+                tags: data.tags
+                    ? {
+                        connectOrCreate: data.tags.map(name => ({
+                            where: { name },
+                            create: { name }
+                        }))
+                    }
+                    : undefined
+            },
+
+            include: {
+                meta: true,
+                variants: true,
+                tags: true
+            }
+        })
+    }
+
 }

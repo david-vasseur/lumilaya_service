@@ -5,12 +5,16 @@ import {
   ParseIntPipe,
   Patch,
   Body,
-  Post
+  Post,
+  UseInterceptors,
+  UploadedFiles
 } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { FingerprintGuard } from 'src/auth/fingerprint-auth.guard';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { UseGuards } from '@nestjs/common';
+import { ProductDto } from './dto/product.dto';
+import { FilesInterceptor } from '@nestjs/platform-express';
 
     @UseGuards(JwtAuthGuard, FingerprintGuard)
     @Controller('product')
@@ -66,4 +70,20 @@ import { UseGuards } from '@nestjs/common';
             ) {
                 return this.productService.addTags(id, tags);
             }
+
+        // ➕ Création
+        @Post('create')
+        @UseInterceptors(FilesInterceptor('images'))
+        async createProduct(
+            @UploadedFiles() files: Express.Multer.File[],
+            @Body('product') product: string
+        ) {
+
+            const data = JSON.parse(product);
+
+            return this.productService.createProduct(
+                data,
+                files
+            );
+        }
     }
