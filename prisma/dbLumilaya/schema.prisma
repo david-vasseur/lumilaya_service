@@ -116,6 +116,8 @@ model ProductMeta {
 
   theme      Json
 
+  content    String[]
+
   stock      Boolean
   promo      Int?
   like       Int?
