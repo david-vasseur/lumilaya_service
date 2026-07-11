@@ -5,10 +5,13 @@ import { GcsService } from 'src/gcs/gcs.service';
 
 @Injectable()
 export class ProductService {
+
+	private readonly logger = new Logger(ProductService.name)
+
 	constructor(
 		private readonly productRepository: ProductRepositoryService,
 		private readonly gcsService: GcsService,
-		private readonly logger = new Logger(ProductService.name)
+		
 	) {}
 
 	// Creation de produit
