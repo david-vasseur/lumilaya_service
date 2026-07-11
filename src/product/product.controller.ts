@@ -6,8 +6,10 @@ import {
   Patch,
   Body,
   Post,
+  Logger,
   UseInterceptors,
-  UploadedFiles
+  UploadedFiles,
+  BadRequestException
 } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { FingerprintGuard } from 'src/auth/fingerprint-auth.guard';
@@ -20,6 +22,7 @@ import { FilesInterceptor } from '@nestjs/platform-express';
     @Controller('product')
     export class ProductController {
         constructor(private readonly productService: ProductService) {}
+        private readonly logger = new Logger(ProductController.name)
 
         // 📦 GET /product/all
         @Get('all')
@@ -78,8 +81,19 @@ import { FilesInterceptor } from '@nestjs/platform-express';
             @UploadedFiles() files: Express.Multer.File[],
             @Body('product') product: string
         ) {
+            this.logger.log('📥 Création produit - Requête reçue');
+            this.logger.debug(`📸 Nombre d'images reçues : ${files?.length ?? 0}`);
 
-            const data = JSON.parse(product);
+            let data:ProductDto;
+
+            try {
+                data = JSON.parse(product);
+            } catch (error) {
+                this.logger.error('❌ Impossible de parser le produit JSON');
+                throw new BadRequestException('Produit invalide');
+            }
+            
+            this.logger.log(`📦 Envoi du produit "${data.meta.name}" au service création`);
 
             return this.productService.createProduct(
                 data,

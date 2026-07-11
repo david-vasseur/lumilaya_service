@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException, Logger } from '@nestjs/common';
 import { ProductRepositoryService } from './product-repository/product-repository.service';
 import { ProductDto } from './dto/product.dto';
 import { GcsService } from 'src/gcs/gcs.service';
@@ -8,32 +8,57 @@ export class ProductService {
 	constructor(
 		private readonly productRepository: ProductRepositoryService,
 		private readonly gcsService: GcsService,
+		private readonly logger = new Logger(ProductService.name)
 	) {}
 
 	// Creation de produit
 	async createProduct(
-        data: ProductDto,
-        files: Express.Multer.File[]
-    ) {
+		data: ProductDto,
+		files: Express.Multer.File[]
+	) {
+		try {
+			this.logger.log(`🚀 Création produit démarrée : "${data.meta.name}"`);
 
-        if (!files || files.length === 0) {
-            throw new BadRequestException(
-                "Au moins une image est requise"
-            );
-        }
+			if (!files || files.length === 0) {
+				this.logger.warn('⚠️ Aucun fichier image reçu');
+				throw new BadRequestException(
+					"Au moins une image est requise"
+				);
+			}
 
+			this.logger.debug(
+				`📸 ${files.length} image(s) à uploader`
+			);
 
-        const images = await this.gcsService.uploadMany(
-            "ton-bucket-name",
-            files
-        );
+			const images = await this.gcsService.uploadMany(
+				"lumilaya",
+				files
+			);
 
+			this.logger.log(
+				`☁️ Upload GCS terminé : ${images.length} image(s) envoyée(s)`
+			);
 
-        return this.productRepository.createProduct({
-            ...data,
-            images
-        });
-    }
+			const product = await this.productRepository.createProduct({
+				...data,
+				images
+			});
+
+			this.logger.log(
+				`✅ Produit créé avec succès : ${product.id}`
+			);
+
+			return product;
+
+		} catch(error) {
+			this.logger.error(
+				"❌ Erreur création produit",
+				error instanceof Error ? error.stack : String(error)
+			);
+
+			throw error;
+		}
+	}
 
 	// 📦 Listing (léger)
 	async getProducts() {

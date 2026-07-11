@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { EventDto } from './dto/event.dto';
 import { EventRepositoryService } from './event-repository/event-repository.service';
 import { GcsService } from 'src/gcs/gcs.service';
+import { ProductService } from 'src/product/product.service';
 
 @Injectable()
 export class EventService {
