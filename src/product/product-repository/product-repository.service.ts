@@ -69,6 +69,7 @@ export class ProductRepositoryService {
         meta?: {
             name?: string
             intro?: string
+            content?: string[]
             collection?: string
             theme?: any
             stock?: boolean
