@@ -9,14 +9,15 @@ import {
   Logger,
   UseInterceptors,
   UploadedFiles,
-  BadRequestException
+  BadRequestException,
+  UploadedFile
 } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { FingerprintGuard } from 'src/auth/fingerprint-auth.guard';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { UseGuards } from '@nestjs/common';
 import { ProductDto } from './dto/product.dto';
-import { FilesInterceptor } from '@nestjs/platform-express';
+import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 
     @UseGuards(JwtAuthGuard, FingerprintGuard)
     @Controller('product')
@@ -98,6 +99,20 @@ import { FilesInterceptor } from '@nestjs/platform-express';
             return this.productService.createProduct(
                 data,
                 files
+            );
+        }
+
+        // Upload d'une image 
+        @Post(':id/upload-image')
+        @UseInterceptors(FileInterceptor('image'))
+        async uploadProductImage(
+            @Param('id') id: number,
+            @UploadedFile() file: Express.Multer.File,
+        ) {
+
+            return this.productService.uploadImage(
+                id,
+                file
             );
         }
     }

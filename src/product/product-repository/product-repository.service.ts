@@ -22,6 +22,8 @@ export class ProductRepositoryService {
             variants: {
                 select: {
                 name: true,
+                weight: true,
+                duration: true,
                 price: true
                 }
             }

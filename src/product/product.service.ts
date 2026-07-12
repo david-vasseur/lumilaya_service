@@ -2,6 +2,7 @@ import { BadRequestException, Injectable, NotFoundException, Logger } from '@nes
 import { ProductRepositoryService } from './product-repository/product-repository.service';
 import { ProductDto } from './dto/product.dto';
 import { GcsService } from 'src/gcs/gcs.service';
+import { randomUUID } from 'crypto';
 
 @Injectable()
 export class ProductService {
@@ -114,4 +115,26 @@ export class ProductService {
 		throw new NotFoundException(`Product with id ${id} not found`);
 		}
 	}
+
+	// Ajout d'une image
+	async uploadImage(
+    id: number,
+    file: Express.Multer.File
+) {
+
+    await this.ensureProductExists(id);
+
+
+    const url = await this.gcsService.upload(
+        "lumilaya",
+        file.buffer,
+        `${randomUUID()}-${file.originalname}`,
+        file.mimetype
+    );
+
+
+    return {
+        url
+    };
+}
 }
