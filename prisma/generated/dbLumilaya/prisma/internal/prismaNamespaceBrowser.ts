@@ -111,7 +111,8 @@ export const OrderItemScalarFieldEnum = {
   variantId: 'variantId',
   name: 'name',
   price: 'price',
-  quantity: 'quantity'
+  quantity: 'quantity',
+  options: 'options'
 } as const
 
 export type OrderItemScalarFieldEnum = (typeof OrderItemScalarFieldEnum)[keyof typeof OrderItemScalarFieldEnum]
@@ -136,6 +137,7 @@ export const ProductMetaScalarFieldEnum = {
   slug: 'slug',
   intro: 'intro',
   theme: 'theme',
+  content: 'content',
   stock: 'stock',
   promo: 'promo',
   like: 'like',

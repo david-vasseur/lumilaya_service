@@ -69,6 +69,7 @@ export type ProductMetaCountAggregateOutputType = {
   slug: number
   intro: number
   theme: number
+  content: number
   stock: number
   promo: number
   like: number
@@ -120,6 +121,7 @@ export type ProductMetaCountAggregateInputType = {
   slug?: true
   intro?: true
   theme?: true
+  content?: true
   stock?: true
   promo?: true
   like?: true
@@ -220,6 +222,7 @@ export type ProductMetaGroupByOutputType = {
   slug: string
   intro: string
   theme: runtime.JsonValue
+  content: string[]
   stock: boolean
   promo: number | null
   like: number | null
@@ -256,6 +259,7 @@ export type ProductMetaWhereInput = {
   slug?: Prisma.StringFilter<"ProductMeta"> | string
   intro?: Prisma.StringFilter<"ProductMeta"> | string
   theme?: Prisma.JsonFilter<"ProductMeta">
+  content?: Prisma.StringNullableListFilter<"ProductMeta">
   stock?: Prisma.BoolFilter<"ProductMeta"> | boolean
   promo?: Prisma.IntNullableFilter<"ProductMeta"> | number | null
   like?: Prisma.IntNullableFilter<"ProductMeta"> | number | null
@@ -270,6 +274,7 @@ export type ProductMetaOrderByWithRelationInput = {
   slug?: Prisma.SortOrder
   intro?: Prisma.SortOrder
   theme?: Prisma.SortOrder
+  content?: Prisma.SortOrder
   stock?: Prisma.SortOrder
   promo?: Prisma.SortOrderInput | Prisma.SortOrder
   like?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -287,6 +292,7 @@ export type ProductMetaWhereUniqueInput = Prisma.AtLeast<{
   name?: Prisma.StringFilter<"ProductMeta"> | string
   intro?: Prisma.StringFilter<"ProductMeta"> | string
   theme?: Prisma.JsonFilter<"ProductMeta">
+  content?: Prisma.StringNullableListFilter<"ProductMeta">
   stock?: Prisma.BoolFilter<"ProductMeta"> | boolean
   promo?: Prisma.IntNullableFilter<"ProductMeta"> | number | null
   like?: Prisma.IntNullableFilter<"ProductMeta"> | number | null
@@ -301,6 +307,7 @@ export type ProductMetaOrderByWithAggregationInput = {
   slug?: Prisma.SortOrder
   intro?: Prisma.SortOrder
   theme?: Prisma.SortOrder
+  content?: Prisma.SortOrder
   stock?: Prisma.SortOrder
   promo?: Prisma.SortOrderInput | Prisma.SortOrder
   like?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -322,6 +329,7 @@ export type ProductMetaScalarWhereWithAggregatesInput = {
   slug?: Prisma.StringWithAggregatesFilter<"ProductMeta"> | string
   intro?: Prisma.StringWithAggregatesFilter<"ProductMeta"> | string
   theme?: Prisma.JsonWithAggregatesFilter<"ProductMeta">
+  content?: Prisma.StringNullableListFilter<"ProductMeta">
   stock?: Prisma.BoolWithAggregatesFilter<"ProductMeta"> | boolean
   promo?: Prisma.IntNullableWithAggregatesFilter<"ProductMeta"> | number | null
   like?: Prisma.IntNullableWithAggregatesFilter<"ProductMeta"> | number | null
@@ -334,6 +342,7 @@ export type ProductMetaCreateInput = {
   slug: string
   intro: string
   theme: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  content?: Prisma.ProductMetaCreatecontentInput | string[]
   stock: boolean
   promo?: number | null
   like?: number | null
@@ -348,6 +357,7 @@ export type ProductMetaUncheckedCreateInput = {
   slug: string
   intro: string
   theme: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  content?: Prisma.ProductMetaCreatecontentInput | string[]
   stock: boolean
   promo?: number | null
   like?: number | null
@@ -361,6 +371,7 @@ export type ProductMetaUpdateInput = {
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   intro?: Prisma.StringFieldUpdateOperationsInput | string
   theme?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  content?: Prisma.ProductMetaUpdatecontentInput | string[]
   stock?: Prisma.BoolFieldUpdateOperationsInput | boolean
   promo?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   like?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -375,6 +386,7 @@ export type ProductMetaUncheckedUpdateInput = {
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   intro?: Prisma.StringFieldUpdateOperationsInput | string
   theme?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  content?: Prisma.ProductMetaUpdatecontentInput | string[]
   stock?: Prisma.BoolFieldUpdateOperationsInput | boolean
   promo?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   like?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -389,6 +401,7 @@ export type ProductMetaCreateManyInput = {
   slug: string
   intro: string
   theme: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  content?: Prisma.ProductMetaCreatecontentInput | string[]
   stock: boolean
   promo?: number | null
   like?: number | null
@@ -401,6 +414,7 @@ export type ProductMetaUpdateManyMutationInput = {
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   intro?: Prisma.StringFieldUpdateOperationsInput | string
   theme?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  content?: Prisma.ProductMetaUpdatecontentInput | string[]
   stock?: Prisma.BoolFieldUpdateOperationsInput | boolean
   promo?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   like?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -414,6 +428,7 @@ export type ProductMetaUncheckedUpdateManyInput = {
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   intro?: Prisma.StringFieldUpdateOperationsInput | string
   theme?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  content?: Prisma.ProductMetaUpdatecontentInput | string[]
   stock?: Prisma.BoolFieldUpdateOperationsInput | boolean
   promo?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   like?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -432,6 +447,7 @@ export type ProductMetaCountOrderByAggregateInput = {
   slug?: Prisma.SortOrder
   intro?: Prisma.SortOrder
   theme?: Prisma.SortOrder
+  content?: Prisma.SortOrder
   stock?: Prisma.SortOrder
   promo?: Prisma.SortOrder
   like?: Prisma.SortOrder
@@ -488,6 +504,15 @@ export type ProductMetaUpdateOneRequiredWithoutProductNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ProductMetaUpdateToOneWithWhereWithoutProductInput, Prisma.ProductMetaUpdateWithoutProductInput>, Prisma.ProductMetaUncheckedUpdateWithoutProductInput>
 }
 
+export type ProductMetaCreatecontentInput = {
+  set: string[]
+}
+
+export type ProductMetaUpdatecontentInput = {
+  set?: string[]
+  push?: string | string[]
+}
+
 export type NullableIntFieldUpdateOperationsInput = {
   set?: number | null
   increment?: number
@@ -502,6 +527,7 @@ export type ProductMetaCreateWithoutProductInput = {
   slug: string
   intro: string
   theme: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  content?: Prisma.ProductMetaCreatecontentInput | string[]
   stock: boolean
   promo?: number | null
   like?: number | null
@@ -515,6 +541,7 @@ export type ProductMetaUncheckedCreateWithoutProductInput = {
   slug: string
   intro: string
   theme: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  content?: Prisma.ProductMetaCreatecontentInput | string[]
   stock: boolean
   promo?: number | null
   like?: number | null
@@ -543,6 +570,7 @@ export type ProductMetaUpdateWithoutProductInput = {
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   intro?: Prisma.StringFieldUpdateOperationsInput | string
   theme?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  content?: Prisma.ProductMetaUpdatecontentInput | string[]
   stock?: Prisma.BoolFieldUpdateOperationsInput | boolean
   promo?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   like?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -556,6 +584,7 @@ export type ProductMetaUncheckedUpdateWithoutProductInput = {
   slug?: Prisma.StringFieldUpdateOperationsInput | string
   intro?: Prisma.StringFieldUpdateOperationsInput | string
   theme?: Prisma.JsonNullValueInput | runtime.InputJsonValue
+  content?: Prisma.ProductMetaUpdatecontentInput | string[]
   stock?: Prisma.BoolFieldUpdateOperationsInput | boolean
   promo?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   like?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
@@ -571,6 +600,7 @@ export type ProductMetaSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   slug?: boolean
   intro?: boolean
   theme?: boolean
+  content?: boolean
   stock?: boolean
   promo?: boolean
   like?: boolean
@@ -585,6 +615,7 @@ export type ProductMetaSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   slug?: boolean
   intro?: boolean
   theme?: boolean
+  content?: boolean
   stock?: boolean
   promo?: boolean
   like?: boolean
@@ -598,6 +629,7 @@ export type ProductMetaSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   slug?: boolean
   intro?: boolean
   theme?: boolean
+  content?: boolean
   stock?: boolean
   promo?: boolean
   like?: boolean
@@ -611,13 +643,14 @@ export type ProductMetaSelectScalar = {
   slug?: boolean
   intro?: boolean
   theme?: boolean
+  content?: boolean
   stock?: boolean
   promo?: boolean
   like?: boolean
   createdAt?: boolean
 }
 
-export type ProductMetaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "collection" | "name" | "slug" | "intro" | "theme" | "stock" | "promo" | "like" | "createdAt", ExtArgs["result"]["productMeta"]>
+export type ProductMetaOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "collection" | "name" | "slug" | "intro" | "theme" | "content" | "stock" | "promo" | "like" | "createdAt", ExtArgs["result"]["productMeta"]>
 export type ProductMetaInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   product?: boolean | Prisma.ProductMeta$productArgs<ExtArgs>
 }
@@ -636,6 +669,7 @@ export type $ProductMetaPayload<ExtArgs extends runtime.Types.Extensions.Interna
     slug: string
     intro: string
     theme: runtime.JsonValue
+    content: string[]
     stock: boolean
     promo: number | null
     like: number | null
@@ -1070,6 +1104,7 @@ export interface ProductMetaFieldRefs {
   readonly slug: Prisma.FieldRef<"ProductMeta", 'String'>
   readonly intro: Prisma.FieldRef<"ProductMeta", 'String'>
   readonly theme: Prisma.FieldRef<"ProductMeta", 'Json'>
+  readonly content: Prisma.FieldRef<"ProductMeta", 'String[]'>
   readonly stock: Prisma.FieldRef<"ProductMeta", 'Boolean'>
   readonly promo: Prisma.FieldRef<"ProductMeta", 'Int'>
   readonly like: Prisma.FieldRef<"ProductMeta", 'Int'>
