@@ -15,19 +15,19 @@ import { randomUUID } from 'crypto';
         }
 
         async upload(
-            bucketName: string,
-            buffer: Buffer,
-            filename: string,
-            contentType?: string
-        ): Promise<string> {
-            const bucket = this.gcs.bucket(bucketName);
-            const file: File = bucket.file(filename);
+                bucketName: string,
+                buffer: Buffer,
+                filename: string,
+                contentType?: string
+            ): Promise<string> {
+                const bucket = this.gcs.bucket(bucketName);
+                const file: File = bucket.file(filename);
 
-            await file.save(buffer, { contentType, resumable: false });
+                await file.save(buffer, { contentType, resumable: false });
 
-            // Renvoyer l’URL publique
-            return `https://storage.googleapis.com/${bucketName}/${filename}`;
-        }
+                // Renvoyer l’URL publique
+                return `https://storage.googleapis.com/${bucketName}/${filename}`;
+            }
 
         async uploadMany(
             bucketName: string,

@@ -118,23 +118,50 @@ export class ProductService {
 
 	// Ajout d'une image
 	async uploadImage(
-    id: number,
-    file: Express.Multer.File
-) {
+		id: number,
+		file: Express.Multer.File
+	) {
 
-    await this.ensureProductExists(id);
-
-
-    const url = await this.gcsService.upload(
-        "lumilaya",
-        file.buffer,
-        `${randomUUID()}-${file.originalname}`,
-        file.mimetype
-    );
+		console.log("📸 ProductService.uploadImage start", {
+			productId: id,
+			filename: file?.originalname,
+			size: file?.size,
+			mimetype: file?.mimetype,
+		});
 
 
-    return {
-        url
-    };
-}
+		console.log("🔎 Checking product exists...");
+
+		await this.ensureProductExists(id);
+
+		console.log("✅ Product exists");
+
+
+		const filename = `${randomUUID()}-${file.originalname}`;
+
+		console.log("☁️ Uploading to GCS...", {
+			bucket: "lumilaya",
+			filename,
+			contentType: file.mimetype,
+			bufferSize: file.buffer.length,
+		});
+
+
+		const url = await this.gcsService.upload(
+			"lumilaya",
+			file.buffer,
+			filename,
+			file.mimetype
+		);
+
+
+		console.log("✅ GCS upload done", {
+			url
+		});
+
+
+		return {
+			url
+		};
+	}
 }

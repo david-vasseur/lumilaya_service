@@ -110,6 +110,8 @@ import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
             @UploadedFile() file: Express.Multer.File,
         ) {
 
+            console.log("UPLOAD CONTROLLER", id, file);
+
             return this.productService.uploadImage(
                 id,
                 file
