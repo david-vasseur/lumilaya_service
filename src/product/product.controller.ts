@@ -106,7 +106,7 @@ import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
         @Post(':id/upload-image')
         @UseInterceptors(FileInterceptor('image'))
         async uploadProductImage(
-            @Param('id') id: number,
+            @Param('id', ParseIntPipe) id: number,
             @UploadedFile() file: Express.Multer.File,
         ) {
 
