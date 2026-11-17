@@ -3,6 +3,7 @@ import { EventDto } from './dto/event.dto';
 import { EventRepositoryService } from './event-repository/event-repository.service';
 import { GcsService } from 'src/gcs/gcs.service';
 import { ProductService } from 'src/product/product.service';
+import { BannerDto } from './dto/banner.dto';
 
 @Injectable()
 export class EventService {
@@ -29,6 +30,16 @@ export class EventService {
             const newData = { ...data, image: imageUrl };
 
             return await this.eventRepository.createEvent(newData);
+
+        } catch (error) {
+            console.error("message: ", error);
+            throw error;
+        }
+    }
+
+    async createEventBanner(data: BannerDto) {
+        try {
+            return await this.eventRepository.createEventBanner(data);
 
         } catch (error) {
             console.error("message: ", error);

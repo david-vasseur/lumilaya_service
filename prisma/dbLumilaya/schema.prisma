@@ -193,3 +193,17 @@ model Event {
   url         String  @default("#")
   createdAt   DateTime @default(now())
 }
+
+model Promo {
+  id        Int       @id @default(1)
+  active    Boolean   @default(false)
+  title     String    @default("")
+  promoCode String?
+  linkUrl   String?
+  linkLabel String?
+  dateStart DateTime?
+  dateEnd   DateTime?
+  bgColor   String    @default("#7A9B8E")
+  textColor String    @default("#FFFFFF")
+  updatedAt DateTime  @updatedAt
+}

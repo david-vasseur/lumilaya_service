@@ -4,6 +4,7 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { EventService } from './event.service';
 import { EventDto } from './dto/event.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { BannerDto } from './dto/banner.dto';
 
 @UseGuards(JwtAuthGuard, FingerprintGuard)
 @Controller('event')
@@ -38,5 +39,23 @@ export class EventController {
             }
 
         }
-        
+    
+    @Post('create-banner')
+        async createBanner(
+            @Body() data: BannerDto) {
+            const banner = await this.eventService.createEventBanner(data);
+
+            if (banner) {
+                return {
+                    success: true,
+                    message: "Bannière créée avec succès"
+                }
+            } else {
+                return {
+                    success: false,
+                    message: "Une erreur s'est produite"
+                }
+            }
+
+        }
 }

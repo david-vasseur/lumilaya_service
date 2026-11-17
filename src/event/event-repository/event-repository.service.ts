@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaDbLumilayaService } from 'src/prisma/prisma-db-lumilaya.service';
 import { EventDto } from '../dto/event.dto';
+import { BannerDto } from '../dto/banner.dto';
 
 @Injectable()
 export class EventRepositoryService {
@@ -45,6 +46,22 @@ export class EventRepositoryService {
                 dateStart: 'asc', 
             },
             take: 3,
+        });
+    }
+
+    async createEventBanner(data: BannerDto) {
+        return await this.prisma.banner.create({
+            data: {
+                active: data.active,
+                title: data.title,
+                promoCode: data.promoCode,
+                linkLabel: data.linkLabel,
+                linkUrl: data.linkUrl,
+                dateStart: data.dateStart ? new Date(data.dateStart) : undefined,
+                dateEnd: data.dateEnd ? new Date(data.dateEnd) : undefined,
+                bgColor: data.bgColor,
+                textColor: data.textColor
+            }
         });
     }
 }
