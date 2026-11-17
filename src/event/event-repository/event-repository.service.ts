@@ -50,18 +50,26 @@ export class EventRepositoryService {
     }
 
     async createEventBanner(data: BannerDto) {
-        return await this.prisma.promo.create({
-            data: {
-                active: data.active,
-                title: data.title,
-                promoCode: data.promoCode,
-                linkLabel: data.linkLabel,
-                linkUrl: data.linkUrl,
-                dateStart: data.dateStart ? new Date(data.dateStart) : undefined,
-                dateEnd: data.dateEnd ? new Date(data.dateEnd) : undefined,
-                bgColor: data.bgColor,
-                textColor: data.textColor
-            }
-        });
-    }
+    const payload = {
+        active: data.active,
+        title: data.title,
+        promoCode: data.promoCode ?? null,
+        linkLabel: data.linkLabel ?? null,
+        linkUrl: data.linkUrl ?? null,
+        dateStart: data.dateStart ? new Date(data.dateStart) : null,
+        dateEnd: data.dateEnd ? new Date(data.dateEnd) : null,
+        bgColor: data.bgColor,
+        textColor: data.textColor,
+    };
+
+    return await this.prisma.promo.upsert({
+        where: { id: 1 },
+        update: payload,
+        create: {
+            id: 1,
+            ...payload,
+        },
+    });
+}
+
 }
