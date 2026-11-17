@@ -50,7 +50,7 @@ export class EventRepositoryService {
     }
 
     async createEventBanner(data: BannerDto) {
-        return await this.prisma.banner.create({
+        return await this.prisma.promo.create({
             data: {
                 active: data.active,
                 title: data.title,
